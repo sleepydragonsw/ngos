@@ -3,6 +3,7 @@ AS := i686-elf-as
 TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 OUTDIR := $(TOPDIR)out/
 .DEFAULT := all
+.PHONY := all clean
 
 BUILD_TARGETS :=
 
@@ -12,3 +13,6 @@ $(OUTDIR):
 	mkdir --parents $(OUTDIR)
 
 all: $(BUILD_TARGETS)
+
+clean:
+	rm -rf $(OUTDIR)
