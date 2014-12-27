@@ -1,3 +1,7 @@
+/*
+This file was adapted from http://wiki.osdev.org/Bare_Bones
+*/
+
 #include <stddef.h>
 #include <stdint.h>
 

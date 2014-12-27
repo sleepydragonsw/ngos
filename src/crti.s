@@ -1,3 +1,7 @@
+/*
+This file was copied verbatim from http://wiki.osdev.org/Calling_Global_Constructors
+*/
+
 /* x86 crti.s */
 .section .init
 .global _init
