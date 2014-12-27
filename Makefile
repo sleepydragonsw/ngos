@@ -8,4 +8,7 @@ BUILD_TARGETS :=
 
 include $(TOPDIR)/src/Makefile
 
+$(OUTDIR):
+	mkdir --parents $(OUTDIR)
+
 all: $(BUILD_TARGETS)
