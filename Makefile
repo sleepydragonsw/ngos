@@ -1,6 +1,5 @@
 CXX := i686-elf-g++
-CXXFLAGS := -std=gnu++11 -ffreestanding -O0 -Wall -Wextra -fno-exceptions -fno-rtti
-LDFLAGS := -ffreestanding -O2 -nostdlib -lgcc
+CXXFLAGS := -std=gnu++11 -ffreestanding -Wall -Wextra -fno-exceptions -fno-rtti
 AS := i686-elf-as
 TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 OUTDIR := $(TOPDIR)out/
