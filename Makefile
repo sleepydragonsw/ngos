@@ -5,6 +5,7 @@ OUTDIR := $(TOPDIR)out/
 .DEFAULT := all
 
 BUILD_TARGETS :=
+
 include $(TOPDIR)/src/Makefile
 
 all: $(BUILD_TARGETS)
