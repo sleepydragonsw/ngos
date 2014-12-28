@@ -3,7 +3,10 @@ TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 $(OUTDIR)boot.o: $(TOPDIR)boot.s
 	$(AS) $(filter %.s,$^) -o $@
 
-$(OUTDIR)kernel.o: $(TOPDIR)kernel.cpp
+$(OUTDIR)kernel.o: $(TOPDIR)kernel.cpp $(TOPDIR)vga.h
+	$(CXX) -c $(filter %.cpp,$^) -o $@ $(CXXFLAGS)
+
+$(OUTDIR)vga.o: $(TOPDIR)vga.cpp $(TOPDIR)vga.h
 	$(CXX) -c $(filter %.cpp,$^) -o $@ $(CXXFLAGS)
 
 $(OUTDIR)crti.o: $(TOPDIR)crti.s
@@ -18,6 +21,7 @@ CRTEND_O := $(shell $(CXX) $(CXXFLAGS) -print-file-name=crtend.o)
 NGOS_OBJ_FILES := \
     $(OUTDIR)boot.o \
     $(OUTDIR)kernel.o \
+    $(OUTDIR)vga.o \
 
 # NOTE: The order of the .o files in this list is EXTREMELY important
 NGOS_OBJ_FILES_WITH_CRT := \
