@@ -19,16 +19,16 @@ void kernel_main()
 {
     VgaTextDisplay display;
     display.clear();
-    display.putChar(0, 0, 'H');
-    display.putChar(0, 1, 'e');
-    display.putChar(0, 2, 'l');
-    display.putChar(0, 3, 'l');
-    display.putChar(0, 4, 'o');
-    display.putChar(0, 5, ' ');
-    display.putChar(0, 6, 'W');
-    display.putChar(0, 7, 'o');
-    display.putChar(0, 8, 'r');
-    display.putChar(0, 9, 'l');
+    display.putChar(0, 0, 'H', VgaTextDisplay::BLUE);
+    display.putChar(0, 1, 'e', VgaTextDisplay::GREEN);
+    display.putChar(0, 2, 'l', VgaTextDisplay::CYAN);
+    display.putChar(0, 3, 'l', VgaTextDisplay::RED);
+    display.putChar(0, 4, 'o', VgaTextDisplay::MAGENTA);
+    display.putChar(0, 5, ' ', VgaTextDisplay::BROWN);
+    display.putChar(0, 6, 'W', VgaTextDisplay::GRAY);
+    display.putChar(0, 7, 'o', VgaTextDisplay::BLUE, VgaTextDisplay::GRAY);
+    display.putChar(0, 8, 'r', VgaTextDisplay::BROWN, VgaTextDisplay::BLACK, true);
+    display.putChar(0, 9, 'l', VgaTextDisplay::BROWN, VgaTextDisplay::BLACK, true, true);
     display.putChar(0, 10, 'd');
     display.putChar(0, 11, '!');
 }
