@@ -1,15 +1,15 @@
 TOPDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
-$(OUTDIR)boot.o: $(OUTDIR) $(TOPDIR)boot.s
+$(OUTDIR)boot.o: $(TOPDIR)boot.s
 	$(AS) $(filter %.s,$^) -o $@
 
-$(OUTDIR)kernel.o: $(OUTDIR) $(TOPDIR)kernel.cpp
+$(OUTDIR)kernel.o: $(TOPDIR)kernel.cpp
 	$(CXX) -c $(filter %.cpp,$^) -o $@ $(CXXFLAGS)
 
-$(OUTDIR)crti.o: $(OUTDIR) $(TOPDIR)crti.s
+$(OUTDIR)crti.o: $(TOPDIR)crti.s
 	$(AS) $(filter %.s,$^) -o $@
 
-$(OUTDIR)crtn.o: $(OUTDIR) $(TOPDIR)crtn.s
+$(OUTDIR)crtn.o: $(TOPDIR)crtn.s
 	$(AS) $(filter %.s,$^) -o $@
 
 CRTBEGIN_O := $(shell $(CXX) $(CXXFLAGS) -print-file-name=crtbegin.o)

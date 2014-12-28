@@ -13,7 +13,7 @@ include $(TOPDIR)/src/Makefile
 $(OUTDIR):
 	mkdir --parents $(OUTDIR)
 
-all: $(BUILD_TARGETS)
+all: $(OUTDIR) $(BUILD_TARGETS)
 
 clean:
 	rm -rf $(OUTDIR)
