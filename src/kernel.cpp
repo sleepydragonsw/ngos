@@ -4,6 +4,7 @@ This file was adapted from http://wiki.osdev.org/Bare_Bones
 
 #include "vga.h"
 #include "screen.h"
+#include "comport.h"
 #include <stddef.h>
 
 /* Check if the compiler thinks if we are targeting the wrong operating system. */
@@ -16,26 +17,15 @@ This file was adapted from http://wiki.osdev.org/Bare_Bones
 #error "This tutorial needs to be compiled with a ix86-elf compiler"
 #endif
 
-static const char HEX_DIGITS[] = {
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-    'A', 'B', 'C', 'D', 'E', 'F'
-};
+static void doComPort(Screen &screen) {
+    ComPort comPort;
+    screen.print("COM Port Base I/O Port: 0x");
+    screen.printHex(comPort.getBaseIoPort());
+    screen.println();
 
-static char getHexChar(int c) {
-    return HEX_DIGITS[c & 0xF];
-}
-
-static void memWordToHexString(int address, char* buf) {
-    char *value = reinterpret_cast<char*>(address);
-    char b1 = value[0];
-    char b2 = value[1];
-    buf[0] = '0';
-    buf[1] = 'x';
-    buf[2] = getHexChar(b2 >> 4);
-    buf[3] = getHexChar(b2);
-    buf[4] = getHexChar(b1 >> 4);
-    buf[5] = getHexChar(b1);
-    buf[6] = 0;
+    screen.print("COM Port Supported: ");
+    screen.print(comPort.isSupported());
+    screen.println();
 }
 
 extern "C"
@@ -44,15 +34,5 @@ void kernel_main()
     VgaTextDisplay display;
     Screen screen(display);
     screen.clear();
-
-    char buf[10];
-
-    memWordToHexString(0x0400, buf);
-    screen.print("COM Port 1 I/O Port: ").println(buf);
-
-    memWordToHexString(0x0402, buf);
-    screen.print("COM Port 2 I/O Port: ").println(buf);
-
-    memWordToHexString(0x0463, buf);
-    screen.print("Base I/O Port for Video: ").println(buf);
+    doComPort(screen);
 }

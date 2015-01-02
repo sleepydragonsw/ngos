@@ -12,6 +12,9 @@ $(OUTDIR)vga.o: $(TOPDIR)vga.cpp $(TOPDIR)vga.h
 $(OUTDIR)screen.o: $(TOPDIR)screen.cpp $(TOPDIR)screen.h $(TOPDIR)vga.h
 	$(CXX) -c $(filter %.cpp,$^) -o $@ $(CXXFLAGS)
 
+$(OUTDIR)comport.o: $(TOPDIR)comport.cpp $(TOPDIR)comport.h
+	$(CXX) -c $(filter %.cpp,$^) -o $@ $(CXXFLAGS)
+
 $(OUTDIR)crti.o: $(TOPDIR)crti.s
 	$(AS) $(filter %.s,$^) -o $@
 
@@ -26,6 +29,7 @@ NGOS_OBJ_FILES := \
     $(OUTDIR)kernel.o \
     $(OUTDIR)vga.o \
     $(OUTDIR)screen.o \
+    $(OUTDIR)comport.o \
 
 # NOTE: The order of the .o files in this list is EXTREMELY important
 NGOS_OBJ_FILES_WITH_CRT := \

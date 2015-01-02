@@ -16,6 +16,8 @@ class Screen {
         void clear();
         Screen& print(char c);
         Screen& print(const char *s);
+        Screen& print(bool v);
+        Screen& printHex(uint16_t v);
         Screen& println();
         Screen& println(char c);
         Screen& println(const char *s);
