@@ -4,7 +4,6 @@ This file was adapted from http://wiki.osdev.org/Bare_Bones
 
 #include "vga.h"
 #include "screen.h"
-#include <stdbool.h>
 #include <stddef.h>
 
 /* Check if the compiler thinks if we are targeting the wrong operating system. */
