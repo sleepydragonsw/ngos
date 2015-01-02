@@ -3,6 +3,7 @@ This file was adapted from http://wiki.osdev.org/Bare_Bones
 */
 
 #include "vga.h"
+#include "screen.h"
 #include <stdbool.h>
 #include <stddef.h>
 
@@ -38,24 +39,21 @@ static void memWordToHexString(int address, char* buf) {
     buf[6] = 0;
 }
 
-static void printStr(VgaTextDisplay &display, const char *s, size_t row, size_t col) {
-    while (*s != 0) {
-        display.putChar(row, col, *s);
-        s++;
-        col++;
-    }
-}
-
 extern "C"
 void kernel_main()
 {
     VgaTextDisplay display;
-    display.clear();
+    Screen screen(display);
+    screen.clear();
+
     char buf[10];
+
     memWordToHexString(0x0400, buf);
-    printStr(display, buf, 0, 0);
+    screen.print("COM Port 1 I/O Port: ").println(buf);
+
     memWordToHexString(0x0402, buf);
-    printStr(display, buf, 1, 0);
+    screen.print("COM Port 2 I/O Port: ").println(buf);
+
     memWordToHexString(0x0463, buf);
-    printStr(display, buf, 2, 0);
+    screen.print("Base I/O Port for Video: ").println(buf);
 }

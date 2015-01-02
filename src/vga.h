@@ -1,3 +1,6 @@
+#ifndef __VGA_H__
+#define __VGA_H__
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
@@ -47,3 +50,5 @@ class VgaTextDisplay {
             return putChar(row, col, c, &options);
         }
 };
+
+#endif /* #ifndef __VGA_H__ */
