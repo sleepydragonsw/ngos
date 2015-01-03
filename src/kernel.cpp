@@ -26,6 +26,14 @@ static void doComPort(Screen &screen) {
     screen.print("COM Port Supported: ");
     screen.print(comPort.isSupported());
     screen.println();
+
+    char c;
+    while (true) {
+        if (! comPort.read(&c)) {
+            break;
+        }
+        comPort.write(c+1);
+    }
 }
 
 extern "C"
